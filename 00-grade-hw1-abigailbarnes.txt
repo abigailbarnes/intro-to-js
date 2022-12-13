@@ -1,0 +1,70 @@
+abigailbarnes hw1 grade: 100/109
+Graded revision 4
+
+Graded by: GLK
+
+Non-coding portion:
+#1a = 5/5 (identified, ideally with link, a game other than Set)
+Uno - solid example
+#1b = 20/20 (described effect of pair-wise distinguishability variation)
+good account
+#1c = 2/5 (90 words or less)
+seem to have about 200 words
+
+#2a = 3/3 (degrees kelvin)
+#2b = 3/3 (Pokemon types)
+#2c = 3/3 (Gregorian calendar dates)
+#2d = 3/3 (crypto hashes)
+#2e = 3/3 (CS dept rankings)
+#2f = 3/3 (0 means absence)
+#2g = 3/3 (star ratings)
+#2h = 3/3 (Mohs' hardness)
+#2i = 0/3 (log(V) versus V, meh)
+ordinal not interval: log() will change size of intervals in a non-uniform way, but preserves ordering
+#2j = 3/3 (time of day, avg'd)
+#2k = 3/3 (#sec since Jan 1 1970)
+ratio is valid, but that is a pretty arbitrary 0
+
+Coding portion:
+#3a = 2/2 (unaplus)
+#3b = 2/2 (pfl)
+#3c = 2/2 (gogotrcm)
+#3d = 2/2 (jnsp)
+#3e = 2/2 (detcWAT)
+#3f = 2/2 (tetcWAT)
+#3g = 1/2 (getpropdot)
+but your code assumes a particular length array! better to say
+ret = aa.map(d => d.cat);
+#3h = 2/2 (adds)
+#3i = 2/2 (tolo)
+#3j = 2/2 (templit)
+#3k = 2/2 (adder)
+#3l = 2/2 (doubler)
+#3m = 1/2 (squarer)
+asked to use exponentiation operator: ret = aa.map((x) => x ** 2);
+#3n = 2/2 (modulo)
+#3o = 2/2 (sfxer)
+#3p = 2/2 (filtels)
+also ok: ret = aa.filter((s) => !(s.length % 2));
+because of the way "!" works 
+#3q = 1/2 (mchain)
+correct but asked for separate lines (for hw1 only)
+#3r = 2/2 (fmeaner)
+#3s = 2/2 (rmeaner)
+#3t = 2/2 (strdesc)
+#3u = 2/2 (addidx)
+can also say x.idx instead of x['idx'] because the property name is a literal not a variable
+#3v = 2/2 (getfoo)
+#3w = 2/2 (getpropbrac)
+
+Grades for individual questions are indicated as a fraction E/T, where E is
+what you earned, and T is the total possible.
+
+Requests for reconsideration of a grade should be made as soon as possible (and
+no later than a week after this grade was returned). Post a private note in the
+hw1 Edstem category. Include:
+ - your CNetID
+ - the question you think was mis-graded
+ - who graded it
+ - why it should be regraded.
+

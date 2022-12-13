@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <!--
+  index.html: hw1 main code
+  Copyright (C)  2022 University of Chicago. All rights reserved.
+
+  This is only for students and instructors in the 2022 CMSC 23900 ("DataVis") class, for use in
+  that class. It is not licensed for open-source or any other kind of re-distribution. Do not allow
+  pthis file to be copied or downloaded by anyone outside the 2022 DataVis class.
+  -->
+  <head>
+    <!-- h/t https://stackoverflow.com/questions/1321878/how-to-prevent-favicon-ico-requests -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <meta charset="utf-8" />
+    <title>DataVis'22 hw1</title>
+    <style>
+      body {
+        font-family: monospace;
+      }
+      .good {
+        background-color: rgb(240, 255, 240);
+      }
+      .bad {
+        background-color: rgb(255, 220, 220);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="results"></div>
+    <div id="cksum0"></div>
+    <div id="cksum1"></div>
+    <div id="cksum2"></div>
+    <div id="allparts"></div>
+  </body>
+
+  <script type="module">
+    import { answer } from './hw1.js';
+    import { equals, scksum } from './util.js';
+    const pall = document.querySelector('#allparts');
+    let goodnum = 0,
+      totnum = 0;
+    answer.forEach((aa) => {
+      totnum++;
+      /* using non-zero epsilon in equality judgement of numeric values
+         to hide the non-associativity of floating point arithmetic */
+      let ok = equals(aa.stu, aa.ref, 0.000000001);
+      goodnum += ok ? 1 : 0;
+      let ndiv = document.createElement('div');
+      ndiv.classList.add(ok ? 'good' : 'bad');
+      ndiv.innerHTML = `<p>${aa.name}: ${ok ? 'ok' : 'OOPS'}<br>
+        you: (${typeof aa.stu}) ${JSON.stringify(aa.stu)}<br>
+        ref: (${typeof aa.ref}) ${JSON.stringify(aa.ref)}`;
+      /* possibly of interest: JSON.stringify outputs JSON but JSON does not include special
+         float-point values: NaN becomes null. Also, the display of strings in HTML does not
+         preserve spaces */
+      pall.append(ndiv);
+    });
+    document.querySelector('#results').innerHTML = `good/total = ${goodnum}/${totnum}<p>`;
+    function ckReport(name, id, got, want) {
+      const div = document.querySelector(id);
+      div.innerHTML += `cksum(${name}) == ` + got;
+      if (got == want) {
+        div.innerHTML += ' as expected';
+        div.classList.add('good');
+      } else {
+        div.innerHTML +=
+          ` but wanted ${want}<br>` +
+          "This means that you (or your editor's auto-formatter) modified something outside<br> " +
+          'the student code blocks.  See if you can undo recent changes, or work from a<br> ' +
+          `pristine copy of ${name} from ../datavis22/work/hw1`;
+        div.classList.add('bad');
+      }
+    }
+    scksum('./hw1.js').then((crc) => ckReport('hw1.js', '#cksum0', crc, 980114977));
+    scksum('./util.js').then((crc) => ckReport('util.js', '#cksum1', crc, 2972081783));
+    scksum('./index.html').then((crc) => ckReport('index.html', '#cksum2', crc, 2016819933));
+  </script>
+</html>
